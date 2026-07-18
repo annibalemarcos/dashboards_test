@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Play Store - Dados Únicos</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+:root{
+  --bg:#f4f6fb;
+  --card-bg:#ffffff;
+  --primary:#4f46e5;
+  --primary-light:#eef1ff;
+  --accent:#0ea5a4;
+  --text-main:#1f2430;
+  --text-muted:#6b7280;
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow:0 4px 20px rgba(17,24,39,0.06);
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text-main);
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  padding-bottom:60px;
+}
+.navbar-brand-custom{
+  font-weight:700;
+  letter-spacing:.3px;
+}
+.topbar{
+  background:linear-gradient(135deg,var(--primary),#7c6ff0);
+  color:#fff;
+  border-radius:0 0 24px 24px;
+  box-shadow:var(--shadow);
+}
+.topbar .subtitle{opacity:.85; font-size:.9rem;}
+.card{
+  border:none;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  background:var(--card-bg);
+}
+.kpi-card{padding:1.1rem 1.3rem; display:flex; align-items:center; gap:1rem;}
+.kpi-icon{
+  width:52px;height:52px;min-width:52px;
+  border-radius:var(--radius-sm);
+  background:var(--primary-light);
+  color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+}
+.kpi-value{font-size:1.5rem; font-weight:700; line-height:1.1;}
+.kpi-label{font-size:.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.4px;}
+.section-title{
+  font-weight:700;
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:1rem;
+}
+.section-title i{color:var(--primary);}
+.chart-card{padding:1.2rem;}
+.accordion-item{border:none; margin-bottom:.6rem; border-radius:var(--radius-sm)!important; overflow:hidden; box-shadow:var(--shadow);}
+.accordion-button{
+  border-radius:var(--radius-sm)!important;
+  font-weight:600;
+  background:var(--card-bg);
+}
+.accordion-button:not(.collapsed){
+  background:var(--primary-light);
+  color:var(--primary);
+  box-shadow:none;
+}
+.accordion-button:focus{box-shadow:none;}
+.badge-soft{
+  background:var(--primary-light);
+  color:var(--primary);
+  border-radius:20px;
+  padding:.35em .75em;
+  font-weight:600;
+  font-size:.75rem;
+}
+.table-clean thead th{
+  border:none; color:var(--text-muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.3px;
+}
+.table-clean td, .table-clean th{vertical-align:middle; border-color:#eef0f4;}
+.modal-content{border-radius:var(--radius); border:none;}
+.btn-primary-soft{
+  background:var(--primary-light);
+  color:var(--primary);
+  border:none;
+  border-radius:20px;
+  font-size:.82rem;
+  font-weight:600;
+  padding:.4rem 1rem;
+}
+.btn-primary-soft:hover{background:var(--primary); color:#fff;}
+.footer-note{color:var(--text-muted); font-size:.8rem;}
+.icon-star{color:#f5a623;}
+.progress{border-radius:20px; height:10px; background:#eef0f4;}
+.progress-bar{background:var(--primary);}
+@media (max-width: 576px){
+  .kpi-value{font-size:1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar py-4 px-3 mb-4">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <div class="navbar-brand-custom fs-4"><i class="bi bi-collection-fill"></i> Dashboard Play Store - Dados Únicos</div>
+        <div class="subtitle"><i class="bi bi-tag"></i> Dados únicos (deduplicados)</div>
+      </div>
+      <div class="text-end">
+        <div class="subtitle"><i class="bi bi-clock-history"></i> Gerado em 18/07/2026 às 07:28:27</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="section-title fs-5"><i class="bi bi-speedometer2"></i> Visão geral</div>
+  <div class="row g-3 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+        <div>
+          <div class="kpi-value">1.162</div>
+          <div class="kpi-label">Apps analisados</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-star-fill"></i></div>
+        <div>
+          <div class="kpi-value">4.37</div>
+          <div class="kpi-label">Nota média</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-download"></i></div>
+        <div>
+          <div class="kpi-value">62.691.693.781</div>
+          <div class="kpi-label">Instalações (estimado)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-chat-square-text-fill"></i></div>
+        <div>
+          <div class="kpi-value">793.551.882</div>
+          <div class="kpi-label">Avaliações somadas</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-gift-fill"></i></div>
+        <div>
+          <div class="kpi-value">98.9%</div>
+          <div class="kpi-label">Gratuitos (1.149)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-currency-dollar"></i></div>
+        <div>
+          <div class="kpi-value">1.1%</div>
+          <div class="kpi-label">Pagos (13)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-megaphone-fill"></i></div>
+        <div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-label">Com anúncios</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-cart-fill"></i></div>
+        <div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-label">Com compras no app</div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <div class="section-title fs-5"><i class="bi bi-bar-chart-fill"></i> Gráficos</div>
+  <div class="row g-3 mb-4">
+    <div class="col-lg-4">
+      <div class="card chart-card h-100">
+        <div class="fw-semibold mb-2"><i class="bi bi-star-fill icon-star"></i> Distribuição de notas</div>
+        <canvas id="chartRating"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card chart-card h-100">
+        <div class="fw-semibold mb-2"><i class="bi bi-tags-fill"></i> Top categorias</div>
+        <canvas id="chartCategorias"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card chart-card h-100">
+        <div class="fw-semibold mb-2"><i class="bi bi-pie-chart-fill"></i> Gratuitos x Pagos</div>
+        <canvas id="chartFreePaid"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title fs-5"><i class="bi bi-trophy-fill"></i> Destaques</div>
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card p-3 h-100 d-flex flex-column justify-content-between">
+        <div><i class="bi bi-star-fill icon-star fs-3"></i>
+          <div class="fw-semibold mt-2">Melhores notas</div>
+          <div class="text-muted small">Apps com as maiores avaliações médias</div>
+        </div>
+        <button class="btn btn-primary-soft mt-3" data-bs-toggle="modal" data-bs-target="#modalTopRated">
+          <i class="bi bi-eye"></i> Ver lista
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3 h-100 d-flex flex-column justify-content-between">
+        <div><i class="bi bi-download fs-3" style="color:var(--accent)"></i>
+          <div class="fw-semibold mt-2">Mais instalados</div>
+          <div class="text-muted small">Apps com maior número de instalações</div>
+        </div>
+        <button class="btn btn-primary-soft mt-3" data-bs-toggle="modal" data-bs-target="#modalTopInstalled">
+          <i class="bi bi-eye"></i> Ver lista
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3 h-100 d-flex flex-column justify-content-between">
+        <div><i class="bi bi-chat-square-text-fill fs-3" style="color:var(--primary)"></i>
+          <div class="fw-semibold mt-2">Mais avaliados</div>
+          <div class="text-muted small">Apps com maior volume de avaliações</div>
+        </div>
+        <button class="btn btn-primary-soft mt-3" data-bs-toggle="modal" data-bs-target="#modalTopReviewed">
+          <i class="bi bi-eye"></i> Ver lista
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title fs-5"><i class="bi bi-cash-coin"></i> Análise financeira</div>
+  <div class="row g-3 mb-3">
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-cash-stack"></i></div>
+        <div>
+          <div class="kpi-value">R$ 0,00</div>
+          <div class="kpi-label">Receita estimada (total)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-tag-fill"></i></div>
+        <div>
+          <div class="kpi-value">R$ 0,00</div>
+          <div class="kpi-label">Preço médio (pagos)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-sliders"></i></div>
+        <div>
+          <div class="kpi-value">R$ 0,00</div>
+          <div class="kpi-label">Preço mediano</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-arrows-expand"></i></div>
+        <div>
+          <div class="kpi-value">R$ 0,00 - R$ 0,00</div>
+          <div class="kpi-label">Faixa de preços</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-credit-card-2-front-fill"></i></div>
+        <div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-label">Apps pagos</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-megaphone-fill"></i></div>
+        <div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-label">Monetizam com anúncios</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-cart-check-fill"></i></div>
+        <div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-label">Monetizam com compras no app</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-6 col-md-3">
+      <div class="card kpi-card h-100">
+        <div class="kpi-icon"><i class="bi bi-gift"></i></div>
+        <div>
+          <div class="kpi-value">1.162</div>
+          <div class="kpi-label">Sem monetização aparente</div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-lg-4">
+      <div class="card chart-card h-100">
+        <div class="fw-semibold mb-2"><i class="bi bi-pie-chart-fill"></i> Estratégia de monetização</div>
+        <canvas id="chartEstrategia"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card chart-card h-100">
+        <div class="fw-semibold mb-2"><i class="bi bi-bar-chart-line-fill"></i> Faixas de preço (apps pagos)</div>
+        <canvas id="chartFaixaPreco"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card chart-card h-100">
+        <div class="fw-semibold mb-2"><i class="bi bi-tags-fill"></i> Preço médio por categoria</div>
+        <canvas id="chartPrecoCategoria"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card p-3 h-100 d-flex flex-column justify-content-between">
+        <div><i class="bi bi-cash-stack fs-3" style="color:var(--accent)"></i>
+          <div class="fw-semibold mt-2">Maior receita estimada</div>
+          <div class="text-muted small">Apps pagos com maior receita estimada (preço x instalações)</div>
+        </div>
+        <button class="btn btn-primary-soft mt-3" data-bs-toggle="modal" data-bs-target="#modalTopReceita">
+          <i class="bi bi-eye"></i> Ver lista
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3 h-100 d-flex flex-column justify-content-between">
+        <div><i class="bi bi-tag-fill fs-3" style="color:var(--primary)"></i>
+          <div class="fw-semibold mt-2">Apps mais caros</div>
+          <div class="text-muted small">Maiores preços de venda encontrados</div>
+        </div>
+        <button class="btn btn-primary-soft mt-3" data-bs-toggle="modal" data-bs-target="#modalTopPagos">
+          <i class="bi bi-eye"></i> Ver lista
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title fs-5"><i class="bi bi-list-columns-reverse"></i> Detalhamento</div>
+  <div class="accordion mb-5" id="accordionDetalhes">
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accPrecoCategoria">
+          <i class="bi bi-cash-coin me-2"></i> Preço médio por categoria (0)
+        </button>
+      </h2>
+      <div id="accPrecoCategoria" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-clean table-hover align-middle">
+              <thead><tr><th>Categoria</th><th>Preço médio</th><th>Qtd. apps pagos</th></tr></thead>
+              <tbody><tr><td colspan="3" class="text-center text-muted py-3">Sem apps pagos suficientes</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#accCategorias">
+          <i class="bi bi-tags-fill me-2"></i> Categorias (49)
+        </button>
+      </h2>
+      <div id="accCategorias" class="accordion-collapse collapse show">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-clean table-hover align-middle">
+              <thead><tr><th>Categoria</th><th>Qtd. apps</th><th>Participação</th></tr></thead>
+              <tbody>
+        <tr>
+          <td>Finanças</td>
+          <td>147</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:12.7%"></div></div>
+              <span class="text-muted small">12.7%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Personalização</td>
+          <td>117</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:10.1%"></div></div>
+              <span class="text-muted small">10.1%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Produtividade</td>
+          <td>76</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:6.5%"></div></div>
+              <span class="text-muted small">6.5%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Ferramentas</td>
+          <td>71</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:6.1%"></div></div>
+              <span class="text-muted small">6.1%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Negócios</td>
+          <td>68</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:5.9%"></div></div>
+              <span class="text-muted small">5.9%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Quebra-cabeças</td>
+          <td>36</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:3.1%"></div></div>
+              <span class="text-muted small">3.1%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Compras</td>
+          <td>33</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.8%"></div></div>
+              <span class="text-muted small">2.8%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Entretenimento</td>
+          <td>32</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.8%"></div></div>
+              <span class="text-muted small">2.8%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Livros e referências</td>
+          <td>31</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.7%"></div></div>
+              <span class="text-muted small">2.7%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Saúde e fitness</td>
+          <td>26</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.2%"></div></div>
+              <span class="text-muted small">2.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Simulador</td>
+          <td>26</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.2%"></div></div>
+              <span class="text-muted small">2.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Esportes</td>
+          <td>26</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.2%"></div></div>
+              <span class="text-muted small">2.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Educação</td>
+          <td>26</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:2.2%"></div></div>
+              <span class="text-muted small">2.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Comunicação</td>
+          <td>21</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.8%"></div></div>
+              <span class="text-muted small">1.8%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Viagem e Turismo</td>
+          <td>20</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.7%"></div></div>
+              <span class="text-muted small">1.7%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>RPG</td>
+          <td>20</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.7%"></div></div>
+              <span class="text-muted small">1.7%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Notícias e revistas</td>
+          <td>18</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.5%"></div></div>
+              <span class="text-muted small">1.5%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Quadrinhos</td>
+          <td>17</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.5%"></div></div>
+              <span class="text-muted small">1.5%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Tabuleiros</td>
+          <td>17</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.5%"></div></div>
+              <span class="text-muted small">1.5%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Ação</td>
+          <td>17</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.5%"></div></div>
+              <span class="text-muted small">1.5%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Estilo de vida</td>
+          <td>16</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.4%"></div></div>
+              <span class="text-muted small">1.4%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Educativos</td>
+          <td>16</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.4%"></div></div>
+              <span class="text-muted small">1.4%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Arte e design</td>
+          <td>16</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.4%"></div></div>
+              <span class="text-muted small">1.4%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Casuais</td>
+          <td>15</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.3%"></div></div>
+              <span class="text-muted small">1.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Mapas e navegação</td>
+          <td>14</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.2%"></div></div>
+              <span class="text-muted small">1.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Fotografia</td>
+          <td>14</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.2%"></div></div>
+              <span class="text-muted small">1.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Estratégia</td>
+          <td>14</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.2%"></div></div>
+              <span class="text-muted small">1.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Social</td>
+          <td>14</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.2%"></div></div>
+              <span class="text-muted small">1.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Música e áudio</td>
+          <td>13</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.1%"></div></div>
+              <span class="text-muted small">1.1%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Medicina</td>
+          <td>13</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:1.1%"></div></div>
+              <span class="text-muted small">1.1%</span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accDevs">
+          <i class="bi bi-person-badge-fill me-2"></i> Desenvolvedores (1027)
+        </button>
+      </h2>
+      <div id="accDevs" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-clean table-hover align-middle">
+              <thead><tr><th>Desenvolvedor</th><th>Qtd. apps</th><th>Participação</th></tr></thead>
+              <tbody>
+        <tr>
+          <td>Google LLC</td>
+          <td>11</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.9%"></div></div>
+              <span class="text-muted small">0.9%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Serviços e Informações do Brasil</td>
+          <td>8</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.7%"></div></div>
+              <span class="text-muted small">0.7%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>OQ Watchfaces</td>
+          <td>5</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.4%"></div></div>
+              <span class="text-muted small">0.4%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>GeniusTools Labs</td>
+          <td>4</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Oakever Games</td>
+          <td>4</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>JusTalk</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>One4Studio</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Code Fusion Tech</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>AppTech Launcher Studios Inc</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>1 Bit</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Payward, Inc.</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Miniclip.com</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>OLX Brasil</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Cards</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>ThemeKit</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Open MEI</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>SpinX Games Limited</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Smart Launcher Team</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Playrix</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>King</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Easybrain</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Amazon Mobile LLC</td>
+          <td>3</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.3%"></div></div>
+              <span class="text-muted small">0.3%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>BrainArt Studio</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Glad Appvestor</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Appgeneration - Radio, Podcasts, Games</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>André F.</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Zoho Corporation</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>AsyncByte Software</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>sungjun221</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>SUNMARE DIGITAL TEKNOLOJI YAZILIM SANAYI TICARET</td>
+          <td>2</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:0.2%"></div></div>
+              <span class="text-muted small">0.2%</span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accContent">
+          <i class="bi bi-shield-check me-2"></i> Classificação indicativa (1)
+        </button>
+      </h2>
+      <div id="accContent" class="accordion-collapse collapse">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-clean table-hover align-middle">
+              <thead><tr><th>Classificação</th><th>Qtd. apps</th><th>Participação</th></tr></thead>
+              <tbody>
+        <tr>
+          <td>N/A</td>
+          <td>1.162</td>
+          <td style="min-width:160px;">
+            <div class="d-flex align-items-center gap-2">
+              <div class="progress flex-grow-1"><div class="progress-bar" style="width:100.0%"></div></div>
+              <span class="text-muted small">100.0%</span>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <div class="text-center footer-note">
+    <i class="bi bi-info-circle"></i> Dashboard gerado automaticamente a partir dos arquivos JSON coletados &middot; 18/07/2026 às 07:28:27
+  </div>
+
+</div>
+
+
+    <div class="modal fade" id="modalTopRated" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-star-fill"></i> Top apps por nota</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-clean table-hover align-middle">
+                <thead>
+                  <tr><th>App</th><th>Desenvolvedor</th><th>Nota</th><th>Avaliações</th><th>Instalações</th><th>Categoria</th></tr>
+                </thead>
+                <tbody>
+        <tr>
+          <td>Premier Wallet</td>
+          <td>Premier Bank Ltd</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 5.00</td>
+          <td>4.495</td>
+          <td>500.000+</td>
+          <td><span class="badge-soft">Finanças</span></td>
+        </tr>
+        
+        <tr>
+          <td>LM | PASS: Ingressos e eventos</td>
+          <td>LM INGRESSOS LTDA</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 5.00</td>
+          <td>10</td>
+          <td>10.000+</td>
+          <td><span class="badge-soft">Eventos</span></td>
+        </tr>
+        
+        <tr>
+          <td>Santo Show - Ingressos</td>
+          <td>Youzoom Soluções Web</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 5.00</td>
+          <td>6</td>
+          <td>5.000+</td>
+          <td><span class="badge-soft">Compras</span></td>
+        </tr>
+        
+        <tr>
+          <td>Placar Pro</td>
+          <td>Developer Ennes</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 5.00</td>
+          <td>12</td>
+          <td>1.000+</td>
+          <td><span class="badge-soft">Produtividade</span></td>
+        </tr>
+        
+        <tr>
+          <td>Viajei: Viagem em Grupo</td>
+          <td>M33 Labs</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 5.00</td>
+          <td>10</td>
+          <td>100+</td>
+          <td><span class="badge-soft">Viagem e Turismo</span></td>
+        </tr>
+        
+        <tr>
+          <td>O Placar: Jogos de Futebol</td>
+          <td>Valverde Lab</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 5.00</td>
+          <td>9</td>
+          <td>100+</td>
+          <td><span class="badge-soft">Esportes</span></td>
+        </tr>
+        
+        <tr>
+          <td>Spell Wallet</td>
+          <td>Spell Labs LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.96</td>
+          <td>24.704</td>
+          <td>100.000+</td>
+          <td><span class="badge-soft">Estilo de vida</span></td>
+        </tr>
+        
+        <tr>
+          <td>Superscore: Resultados Ao Vivo</td>
+          <td>Sportening</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.95</td>
+          <td>7.780</td>
+          <td>500.000+</td>
+          <td><span class="badge-soft">Esportes</span></td>
+        </tr>
+        
+        <tr>
+          <td>Carteira Digital do Migrante</td>
+          <td>Serviços e Informações do Brasil</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.94</td>
+          <td>9.801</td>
+          <td>100.000+</td>
+          <td><span class="badge-soft">Ferramentas</span></td>
+        </tr>
+        
+        <tr>
+          <td>Hevy - Treino de Academia Gym</td>
+          <td>Hevy Gym Workout Tracker</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.94</td>
+          <td>236.112</td>
+          <td>5.000.000+</td>
+          <td><span class="badge-soft">Saúde e fitness</span></td>
+        </tr>
+        
+        <tr>
+          <td>Hero Investor: Business Tycoon</td>
+          <td>Ramy Tawfik</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.94</td>
+          <td>135</td>
+          <td>10.000+</td>
+          <td><span class="badge-soft">Simulador</span></td>
+        </tr>
+        
+        <tr>
+          <td>Clima &amp; Radar - Previsão Tempo</td>
+          <td>Deep Orbit</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.93</td>
+          <td>2.896</td>
+          <td>100.000+</td>
+          <td><span class="badge-soft">Clima</span></td>
+        </tr>
+        
+        <tr>
+          <td>Notas, Bloco de Notas - Notein</td>
+          <td>Simple Design Ltd.</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.93</td>
+          <td>444.246</td>
+          <td>10.000.000+</td>
+          <td><span class="badge-soft">Produtividade</span></td>
+        </tr>
+        
+        <tr>
+          <td>White Moonlight Icon Pack</td>
+          <td>PizzApp Design</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.92</td>
+          <td>316</td>
+          <td>10.000+</td>
+          <td><span class="badge-soft">Personalização</span></td>
+        </tr>
+        
+        <tr>
+          <td>Idade Gestacional (do bebê)</td>
+          <td>Alpen Mobile</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.92</td>
+          <td>6.107</td>
+          <td>500.000+</td>
+          <td><span class="badge-soft">Medicina</span></td>
+        </tr>
+        </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="modal fade" id="modalTopInstalled" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-download"></i> Top apps por instalações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-clean table-hover align-middle">
+                <thead>
+                  <tr><th>App</th><th>Desenvolvedor</th><th>Nota</th><th>Avaliações</th><th>Instalações</th><th>Categoria</th></tr>
+                </thead>
+                <tbody>
+        <tr>
+          <td>WhatsApp Messenger</td>
+          <td>WhatsApp LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.75</td>
+          <td>238.174.201</td>
+          <td>10.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Maps</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.35</td>
+          <td>19.465.072</td>
+          <td>10.000.000.000+</td>
+          <td><span class="badge-soft">Viagem e Turismo</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Mensagens</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.69</td>
+          <td>43.363.982</td>
+          <td>10.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Agenda</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.81</td>
+          <td>4.638.349</td>
+          <td>5.000.000.000+</td>
+          <td><span class="badge-soft">Produtividade</span></td>
+        </tr>
+        
+        <tr>
+          <td>Candy Crush Saga</td>
+          <td>King</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.72</td>
+          <td>38.915.592</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Casuais</span></td>
+        </tr>
+        
+        <tr>
+          <td>Block Blast!</td>
+          <td>HungryStudio</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.81</td>
+          <td>5.044.068</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Quebra-cabeças</span></td>
+        </tr>
+        
+        <tr>
+          <td>WhatsApp Business</td>
+          <td>WhatsApp LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.72</td>
+          <td>23.224.379</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Play Livros</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.82</td>
+          <td>3.162.707</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Livros e referências</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Notícias</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.37</td>
+          <td>1.959.957</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Notícias e revistas</span></td>
+        </tr>
+        
+        <tr>
+          <td>Amazon Shopping</td>
+          <td>Amazon Mobile LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.28</td>
+          <td>4.604.696</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Compras</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Maps Go</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.30</td>
+          <td>356.833</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Viagem e Turismo</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Keep: notas e listas</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.83</td>
+          <td>2.466.118</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Produtividade</span></td>
+        </tr>
+        
+        <tr>
+          <td>imo chat e chamadas de vídeo</td>
+          <td>imo.im</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 3.97</td>
+          <td>9.045.680</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>LINE: Chamadas &amp; Mensagens</td>
+          <td>LINE (LY Corporation)</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 3.08</td>
+          <td>13.808.609</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Planos de fundo</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.21</td>
+          <td>291.873</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Personalização</span></td>
+        </tr>
+        </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="modal fade" id="modalTopReviewed" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-chat-square-text-fill"></i> Top apps por número de avaliações</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-clean table-hover align-middle">
+                <thead>
+                  <tr><th>App</th><th>Desenvolvedor</th><th>Nota</th><th>Avaliações</th><th>Instalações</th><th>Categoria</th></tr>
+                </thead>
+                <tbody>
+        <tr>
+          <td>WhatsApp Messenger</td>
+          <td>WhatsApp LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.75</td>
+          <td>238.174.201</td>
+          <td>10.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Mensagens</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.69</td>
+          <td>43.363.982</td>
+          <td>10.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Candy Crush Saga</td>
+          <td>King</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.72</td>
+          <td>38.915.592</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Casuais</span></td>
+        </tr>
+        
+        <tr>
+          <td>Mercado Livre: Compras 7.7</td>
+          <td>Mercado Libre</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.87</td>
+          <td>26.024.132</td>
+          <td>500.000.000+</td>
+          <td><span class="badge-soft">Compras</span></td>
+        </tr>
+        
+        <tr>
+          <td>WhatsApp Business</td>
+          <td>WhatsApp LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.72</td>
+          <td>23.224.379</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Google Maps</td>
+          <td>Google LLC</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.35</td>
+          <td>19.465.072</td>
+          <td>10.000.000.000+</td>
+          <td><span class="badge-soft">Viagem e Turismo</span></td>
+        </tr>
+        
+        <tr>
+          <td>Zedge™ Papéis de Parede</td>
+          <td>Zedge</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.74</td>
+          <td>17.714.818</td>
+          <td>500.000.000+</td>
+          <td><span class="badge-soft">Personalização</span></td>
+        </tr>
+        
+        <tr>
+          <td>AliExpress: Compras online</td>
+          <td>Alibaba Mobile</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.50</td>
+          <td>16.294.688</td>
+          <td>500.000.000+</td>
+          <td><span class="badge-soft">Compras</span></td>
+        </tr>
+        
+        <tr>
+          <td>Netflix</td>
+          <td>Netflix, Inc.</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.10</td>
+          <td>15.161.710</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Entretenimento</span></td>
+        </tr>
+        
+        <tr>
+          <td>LINE: Chamadas &amp; Mensagens</td>
+          <td>LINE (LY Corporation)</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 3.08</td>
+          <td>13.808.609</td>
+          <td>1.000.000.000+</td>
+          <td><span class="badge-soft">Comunicação</span></td>
+        </tr>
+        
+        <tr>
+          <td>Homescapes</td>
+          <td>Playrix</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.81</td>
+          <td>13.330.643</td>
+          <td>500.000.000+</td>
+          <td><span class="badge-soft">Casuais</span></td>
+        </tr>
+        
+        <tr>
+          <td>Gardenscapes</td>
+          <td>Playrix</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.81</td>
+          <td>13.289.988</td>
+          <td>500.000.000+</td>
+          <td><span class="badge-soft">Casuais</span></td>
+        </tr>
+        
+        <tr>
+          <td>Royal Match</td>
+          <td>Dream Games, Ltd.</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.78</td>
+          <td>10.503.984</td>
+          <td>100.000.000+</td>
+          <td><span class="badge-soft">Quebra-cabeças</span></td>
+        </tr>
+        
+        <tr>
+          <td>SHEIN-Compras Online</td>
+          <td>Roadget Business PTE. LTD.</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.84</td>
+          <td>10.110.864</td>
+          <td>500.000.000+</td>
+          <td><span class="badge-soft">Compras</span></td>
+        </tr>
+        
+        <tr>
+          <td>Farm Heroes Saga</td>
+          <td>King</td>
+          <td><i class="bi bi-star-fill icon-star"></i> 4.70</td>
+          <td>9.841.985</td>
+          <td>100.000.000+</td>
+          <td><span class="badge-soft">Casuais</span></td>
+        </tr>
+        </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="modal fade" id="modalTopReceita" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-cash-stack"></i> Top apps por receita estimada</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted small"><i class="bi bi-exclamation-circle"></i> Receita estimada = preço x instalações informadas pela Play Store (aproximação; não considera compras no app nem descontos).</p>
+            <div class="table-responsive">
+              <table class="table table-clean table-hover align-middle">
+                <thead>
+                  <tr><th>App</th><th>Desenvolvedor</th><th>Preço</th><th>Instalações</th><th>Receita estimada</th></tr>
+                </thead>
+                <tbody><tr><td colspan="5" class="text-center text-muted py-3">Sem apps pagos suficientes</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="modal fade" id="modalTopPagos" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-tag-fill"></i> Apps mais caros</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-clean table-hover align-middle">
+                <thead><tr><th>App</th><th>Desenvolvedor</th><th>Preço</th><th>Instalações</th><th>Categoria</th></tr></thead>
+                <tbody><tr><td colspan="5" class="text-center text-muted py-3">Sem apps pagos suficientes</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+const ratingLabels = ["1★", "2★", "3★", "4★", "5★"];
+const ratingData = [0, 11, 68, 397, 556];
+const catLabels = ["Finanças", "Personalização", "Produtividade", "Ferramentas", "Negócios", "Quebra-cabeças", "Compras", "Entretenimento", "Livros e referências", "Saúde e fitness"];
+const catData = [147, 117, 76, 71, 68, 36, 33, 32, 31, 26];
+const freePaidData = [1149, 13];
+const estrategiaLabels = ["Gratuito (sem monetização aparente)"];
+const estrategiaData = [1162];
+const faixaLabels = [];
+const faixaData = [];
+const precoCatLabels = [];
+const precoCatData = [];
+
+new Chart(document.getElementById('chartRating'), {
+  type: 'bar',
+  data: {
+    labels: ratingLabels,
+    datasets: [{ label: 'Apps', data: ratingData, backgroundColor: '#4f46e5', borderRadius: 8 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+new Chart(document.getElementById('chartCategorias'), {
+  type: 'bar',
+  data: {
+    labels: catLabels,
+    datasets: [{ label: 'Apps', data: catData, backgroundColor: '#0ea5a4', borderRadius: 8 }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true } }
+  }
+});
+
+new Chart(document.getElementById('chartFreePaid'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Gratuitos', 'Pagos'],
+    datasets: [{ data: freePaidData, backgroundColor: ['#4f46e5', '#f5a623'] }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+
+new Chart(document.getElementById('chartEstrategia'), {
+  type: 'doughnut',
+  data: {
+    labels: estrategiaLabels,
+    datasets: [{ data: estrategiaData, backgroundColor: ['#4f46e5','#0ea5a4','#f5a623','#ef4444','#8b5cf6','#22c55e'] }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } } }
+  }
+});
+
+new Chart(document.getElementById('chartFaixaPreco'), {
+  type: 'bar',
+  data: {
+    labels: faixaLabels,
+    datasets: [{ label: 'Apps', data: faixaData, backgroundColor: '#f5a623', borderRadius: 8 }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+new Chart(document.getElementById('chartPrecoCategoria'), {
+  type: 'bar',
+  data: {
+    labels: precoCatLabels,
+    datasets: [{ label: 'Preço médio', data: precoCatData, backgroundColor: '#8b5cf6', borderRadius: 8 }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true } }
+  }
+});
+</script>
+</body>
+</html>

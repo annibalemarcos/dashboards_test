@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Play · Histórico — Dashboard exportado</title>
+<style>
+:root {
+  --bg: #f5f6fa;
+  --surface: #ffffff;
+  --border: #e6e8f0;
+  --text: #1e2230;
+  --text-muted: #767c8f;
+  --primary: #3b5bfb;
+  --primary-soft: #eef1ff;
+  --danger: #e5484d;
+  --radius-lg: 14px;
+  --radius: 10px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 2px rgba(20, 20, 43, 0.05);
+  --shadow-md: 0 6px 20px rgba(20, 20, 43, 0.06);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Inter, Roboto, sans-serif;
+  font-size: 0.94rem;
+}
+code, .raw-json { font-family: "Consolas", "JetBrains Mono", ui-monospace, monospace; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #6a3bfb 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+.hero h1 { margin: 0 0 0.25rem; font-size: 1.5rem; font-weight: 700; }
+.hero .sub { opacity: 0.9; font-size: 0.9rem; }
+.hero .scope-badge {
+  display: inline-block; margin-top: 0.6rem;
+  background: rgba(255,255,255,0.18);
+  padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.82rem;
+}
+.scope-detail { margin-top: 0.5rem; font-size: 0.82rem; opacity: 0.85; }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+.stat-card-wide { grid-column: span 2; }
+.stat-num { font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+.stat-label { color: var(--text-muted); font-size: 0.78rem; margin-top: 0.2rem; }
+
+.toolbar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.toolbar-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.toolbar input[type=text], .toolbar input[type=date] {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.88rem;
+  background: var(--bg);
+  color: var(--text);
+}
+#searchInput { flex: 1 1 260px; min-width: 200px; }
+.btn {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.btn:hover { border-color: var(--primary); color: var(--primary); }
+.btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+.chip {
+  --chip-color: var(--primary);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.chip:hover { border-color: var(--chip-color); }
+.chip.active { background: var(--chip-color); border-color: var(--chip-color); color: #fff; }
+.chip .chip-count {
+  background: var(--primary-soft); color: var(--primary);
+  border-radius: 999px; padding: 0.05rem 0.45rem; font-size: 0.75rem; margin-left: 0.25rem;
+}
+.chip.active .chip-count { background: rgba(255,255,255,0.25); color: #fff; }
+
+.results-info { color: var(--text-muted); font-size: 0.85rem; margin: 0.75rem 0.25rem; }
+
+.table-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  text-align: left; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.03em;
+  color: var(--text-muted); padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: var(--surface);
+}
+tbody td { padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tbody tr:hover { background: var(--primary-soft); }
+.item-title { font-weight: 600; }
+.item-subtitle { color: var(--text-muted); font-size: 0.8rem; }
+.item-amount { font-weight: 600; font-variant-numeric: tabular-nums; }
+.item-date { color: var(--text-muted); font-variant-numeric: tabular-nums; font-size: 0.83rem; white-space: nowrap; }
+.type-pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: var(--chip-bg, var(--primary-soft)); color: var(--chip-fg, var(--primary));
+  border-radius: 999px; padding: 0.2rem 0.6rem; font-size: 0.78rem; white-space: nowrap;
+}
+.row-action {
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-muted);
+  border-radius: var(--radius-sm); padding: 0.3rem 0.5rem; font-size: 0.78rem; cursor: pointer;
+  text-decoration: none; display: inline-block; margin-left: 0.25rem;
+}
+.row-action:hover { color: var(--primary); border-color: var(--primary); }
+.raw-json {
+  background: #0e1020; color: #d6e0ff; padding: 0.9rem; border-radius: var(--radius-sm);
+  font-size: 0.78rem; white-space: pre-wrap; word-break: break-word; margin: 0;
+}
+.detail-row td { background: #fafbff; }
+.empty-state { text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
+
+.footer-note { text-align: center; color: var(--text-muted); font-size: 0.78rem; margin-top: 1.5rem; }
+
+@media (max-width: 720px) {
+  table thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tbody tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+  tbody td { border: none; padding: 0.15rem 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>📊 Google Play · Histórico — Dashboard exportado</h1>
+    <div class="sub">Gerado em 18/07/2026 11:47</div>
+    <div class="scope-badge">Resultados filtrados</div>
+    <div class="scope-detail">Documentos: Play Settings &nbsp;·&nbsp; Ordenado por: date (desc)</div>
+  </div>
+
+  <div class="stats-row">
+    
+      <div class="stat-card">
+        <div class="stat-num">16</div>
+        <div class="stat-label">Registros no export</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Tipos de documento</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Com link para a loja</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="font-size:1.05rem">
+          —
+        </div>
+        <div class="stat-label">Período coberto</div>
+      </div>
+    
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-row" style="margin-bottom:0.6rem;">
+      <input type="text" id="searchInput" placeholder="Buscar por título, pacote, detalhe…">
+      <input type="date" id="dateFrom" title="Data inicial">
+      <input type="date" id="dateTo" title="Data final">
+      <button class="btn" id="toggleAmount" title="Somente com valor">💰 Com valor</button>
+      <button class="btn" id="toggleLink" title="Somente com link">🔗 Com link</button>
+      <button class="btn" id="btnClearFilters">↺ Limpar filtros</button>
+    </div>
+    <div class="toolbar-row">
+      <strong style="font-size:0.82rem; color:var(--text-muted); margin-right:0.25rem;">Documentos:</strong>
+      <button class="chip active" data-type="" id="chipAll">Todos <span class="chip-count">16</span></button>
+      <button class="chip" data-type="Play Settings" style="--chip-color:#6c757d"><span>⚙️</span> Configurações <span class="chip-count">16</span></button>
+    </div>
+  </div>
+
+  <div class="results-info" id="resultsInfo"></div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px"></th>
+          <th>Título</th>
+          <th>Detalhe</th>
+          <th style="width:120px">Valor</th>
+          <th style="width:150px">Data</th>
+          <th style="width:130px">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">Nenhum registro encontrado com esses filtros.</div>
+  </div>
+
+  <div class="footer-note">Exportado de "Google Play · Histórico" · todos os dados ficam neste próprio arquivo (funciona offline).</div>
+</div>
+
+<script>
+const DATA = [{"id": 3890, "type": "Play Settings", "title": "Play Settings", "subtitle": "", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"marketingPreferences\": {\n      \"wantsMultiContentEmail\": true\n    }\n  }\n}"}, {"id": 3891, "type": "Play Settings", "title": "AudioRelay: Streaming de aúdio", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"AudioRelay: Streaming de aúdio\"\n      }\n    }\n  }\n}"}, {"id": 3892, "type": "Play Settings", "title": "com.bubble.connect.bitconnect", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.bubble.connect.bitconnect\"\n      }\n    }\n  }\n}"}, {"id": 3893, "type": "Play Settings", "title": "com.chili.slots.master.click", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.chili.slots.master.click\"\n      }\n    }\n  }\n}"}, {"id": 3894, "type": "Play Settings", "title": "Game Cashouts – Play & Earn", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"Game Cashouts – Play & Earn\"\n      }\n    }\n  }\n}"}, {"id": 3895, "type": "Play Settings", "title": "Kwai - Vídeo & Bônus Diário", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"Kwai - Vídeo & Bônus Diário\"\n      }\n    }\n  }\n}"}, {"id": 3896, "type": "Play Settings", "title": "com.linest.google", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.linest.google\"\n      }\n    }\n  }\n}"}, {"id": 3897, "type": "Play Settings", "title": "MuduPay USSD", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"MuduPay USSD\"\n      }\n    }\n  }\n}"}, {"id": 3898, "type": "Play Settings", "title": "Pagaleve", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"Pagaleve\"\n      }\n    }\n  }\n}"}, {"id": 3899, "type": "Play Settings", "title": "com.quizmoli.android.million", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.quizmoli.android.million\"\n      }\n    }\n  }\n}"}, {"id": 3900, "type": "Play Settings", "title": "Substack", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"Substack\"\n      }\n    }\n  }\n}"}, {"id": 3901, "type": "Play Settings", "title": "com.tokwin.lucky", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.tokwin.lucky\"\n      }\n    }\n  }\n}"}, {"id": 3902, "type": "Play Settings", "title": "com.wisdom.brain.star", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.wisdom.brain.star\"\n      }\n    }\n  }\n}"}, {"id": 3903, "type": "Play Settings", "title": "com.xworld.free.welfare.game.app.io", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"com.xworld.free.welfare.game.app.io\"\n      }\n    }\n  }\n}"}, {"id": 3904, "type": "Play Settings", "title": "Anytype — The Everything App", "subtitle": "Android Apps", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"testingProgramListItem\": {\n      \"doc\": {\n        \"documentType\": \"Android Apps\",\n        \"title\": \"Anytype — The Everything App\"\n      }\n    }\n  }\n}"}, {"id": 3905, "type": "Play Settings", "title": "Play Settings", "subtitle": "", "package_id": "", "amount": "", "currency": "", "date": "", "source_file": "Play Settings.json", "play_url": "", "raw": "{\n  \"userSetting\": {\n    \"userCountryCode\": \"BR\"\n  }\n}"}];
+const TYPE_META = {"Devices": {"label": "Dispositivos", "color": "#6c757d", "emoji": "📱"}, "Installs": {"label": "Instalações", "color": "#0d6efd", "emoji": "⬇️"}, "Library": {"label": "Biblioteca", "color": "#6610f2", "emoji": "📚"}, "Order History": {"label": "Histórico de pedidos", "color": "#198754", "emoji": "🧾"}, "Play Points": {"label": "Play Points", "color": "#ffc107", "emoji": "⭐"}, "Play Settings": {"label": "Configurações", "color": "#6c757d", "emoji": "⚙️"}, "Promotion History": {"label": "Promoções", "color": "#fd7e14", "emoji": "📣"}, "Purchase History": {"label": "Compras", "color": "#198754", "emoji": "🛒"}, "Redemption History": {"label": "Resgates", "color": "#d63384", "emoji": "🎁"}, "Subscriptions": {"label": "Assinaturas", "color": "#0dcaf0", "emoji": "🔁"}};
+
+const state = { q: "", types: new Set(), date_from: "", date_to: "", only_amount: false, only_link: false };
+const el = (id) => document.getElementById(id);
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return "";
+  return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+}
+
+function matches(item) {
+  if (state.types.size && !state.types.has(item.type)) return false;
+  if (state.only_amount && !item.amount) return false;
+  if (state.only_link && !item.play_url) return false;
+  if (state.date_from && (!item.date || item.date < state.date_from)) return false;
+  if (state.date_to && (!item.date || item.date > (state.date_to + " 23:59"))) return false;
+  if (state.q) {
+    const hay = (item.title + " " + item.subtitle + " " + item.package_id + " " + item.raw).toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function render() {
+  const filtered = DATA.filter(matches);
+  const tbody = el("tableBody");
+  tbody.innerHTML = "";
+  el("emptyState").style.display = filtered.length ? "none" : "block";
+  el("resultsInfo").textContent = `Mostrando ${filtered.length} de ${DATA.length} registro(s)`;
+
+  const frag = document.createDocumentFragment();
+  filtered.forEach((item, idx) => {
+    const meta = TYPE_META[item.type] || {label:item.type, color:"#6c757d", emoji:"📄"};
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><span class="type-pill" style="--chip-bg:${meta.color}22;--chip-fg:${meta.color}" title="${escapeHtml(meta.label)}">${meta.emoji}</span></td>
+      <td>
+        <div class="item-title">${escapeHtml(item.title)}</div>
+        ${item.package_id ? `<div class="item-subtitle">${escapeHtml(item.package_id)}</div>` : ""}
+      </td>
+      <td><span class="item-subtitle">${escapeHtml(item.subtitle) || "—"}</span></td>
+      <td>${item.amount ? `<span class="item-amount">${escapeHtml(item.amount)} ${escapeHtml(item.currency)}</span>` : "—"}</td>
+      <td><span class="item-date">${escapeHtml(item.date) || "—"}</span></td>
+      <td>
+        <button class="row-action btn-detail" data-idx="${idx}">Ver JSON</button>
+        ${item.play_url ? `<a class="row-action" href="${item.play_url}" target="_blank" rel="noopener">Loja ↗</a>` : ""}
+      </td>`;
+    frag.appendChild(tr);
+  });
+  tbody.appendChild(frag);
+
+  tbody.querySelectorAll(".btn-detail").forEach((btn) => {
+    btn.addEventListener("click", () => toggleDetail(btn, filtered[Number(btn.dataset.idx)]));
+  });
+}
+
+function toggleDetail(btn, item) {
+  const tr = btn.closest("tr");
+  const next = tr.nextElementSibling;
+  if (next && next.classList.contains("detail-row")) {
+    next.remove();
+    btn.textContent = "Ver JSON";
+    return;
+  }
+  const detailTr = document.createElement("tr");
+  detailTr.className = "detail-row";
+  detailTr.innerHTML = `<td colspan="6"><pre class="raw-json">${escapeHtml(item.raw)}</pre></td>`;
+  tr.after(detailTr);
+  btn.textContent = "Ocultar";
+}
+
+let debounce;
+el("searchInput").addEventListener("input", (e) => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => { state.q = e.target.value.trim().toLowerCase(); render(); }, 200);
+});
+el("dateFrom").addEventListener("change", (e) => { state.date_from = e.target.value; render(); });
+el("dateTo").addEventListener("change", (e) => { state.date_to = e.target.value; render(); });
+el("toggleAmount").addEventListener("click", () => {
+  state.only_amount = !state.only_amount;
+  el("toggleAmount").classList.toggle("active", state.only_amount);
+  render();
+});
+el("toggleLink").addEventListener("click", () => {
+  state.only_link = !state.only_link;
+  el("toggleLink").classList.toggle("active", state.only_link);
+  render();
+});
+
+document.querySelectorAll(".chip").forEach((chip) => {
+  chip.addEventListener("click", () => {
+    const type = chip.dataset.type;
+    if (type === "") {
+      state.types.clear();
+      document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
+    } else {
+      el("chipAll").classList.remove("active");
+      chip.classList.toggle("active");
+      if (chip.classList.contains("active")) state.types.add(type); else state.types.delete(type);
+      if (state.types.size === 0) el("chipAll").classList.add("active");
+    }
+    render();
+  });
+});
+
+el("btnClearFilters").addEventListener("click", () => {
+  state.q = ""; state.types.clear(); state.date_from = ""; state.date_to = "";
+  state.only_amount = false; state.only_link = false;
+  el("searchInput").value = ""; el("dateFrom").value = ""; el("dateTo").value = "";
+  el("toggleAmount").classList.remove("active"); el("toggleLink").classList.remove("active");
+  document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+  el("chipAll").classList.add("active");
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

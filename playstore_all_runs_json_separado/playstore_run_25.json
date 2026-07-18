@@ -1,0 +1,29 @@
+{
+  "run": {
+    "id": 25,
+    "created_at": "2026-07-18 04:07:39",
+    "started_at": "2026-07-18 04:07:39",
+    "finished_at": null,
+    "status": "delete_requested",
+    "scope": "APPS",
+    "level": "FINANCEIRO",
+    "profile": "TODOS",
+    "quantity": 250,
+    "max_categories": null,
+    "apps_scanned": 34,
+    "apps_kept": 34,
+    "categories_done": 0,
+    "categories_total": 1,
+    "errors_count": 0,
+    "last_message": "Exclusão solicitada. A coleta será interrompida e removida.",
+    "config_json": "{\n  \"scope\": \"APPS\",\n  \"level\": \"FINANCEIRO\",\n  \"profile\": \"TODOS\",\n  \"quantity\": 250,\n  \"detail_limit\": 25,\n  \"reviews_per_app\": 25,\n  \"use_external_apis\": true,\n  \"use_developer_site\": false,\n  \"open_html\": true,\n  \"country\": \"br\",\n  \"lang\": \"pt\",\n  \"delay\": 0.26,\n  \"max_categories\": null,\n  \"output_dir\": \"E:\\\\my_projects\\\\playstore_radar_ultra_suite\\\\playstore_radar_outputs\",\n  \"db_path\": \"E:\\\\my_projects\\\\playstore_radar_ultra_suite\\\\data\\\\playstore_radar.db\",\n  \"exchange_rate_brl\": 5.4,\n  \"include_paid_apps\": true,\n  \"category_codes\": \"ANDROID_WEAR,ART_AND_DESIGN,AUTO_AND_VEHICLES,BEAUTY,BOOKS_AND_REFERENCE,BUSINESS,COMICS,COMMUNICATION,DATING,EDUCATION,ENTERTAINMENT,EVENTS,FINANCE,FOOD_AND_DRINK,HEALTH_AND_FITNESS,HOUSE_AND_HOME,LIBRARIES_AND_DEMO,LIFESTYLE,MAPS_AND_NAVIGATION,MEDICAL,MUSIC_AND_AUDIO,NEWS_AND_MAGAZINES,PARENTING,PERSONALIZATION,PHOTOGRAPHY,PRODUCTIVITY,SHOPPING,SOCIAL,SPORTS,TOOLS,TRAVEL_AND_LOCAL,VIDEO_PLAYERS,WEATHER\",\n  \"subcategory_codes\": \"\",\n  \"search_query\": \"bitcoin\"\n}",
+    "output_dir": "E:\\my_projects\\playstore_radar_ultra_suite\\playstore_radar_outputs",
+    "html_path": null,
+    "json_path": null,
+    "csv_path": null,
+    "control_note": "Exclusão solicitada. A coleta será interrompida e removida.",
+    "parent_run_id": null,
+    "updated_at": "2026-07-18 05:29:14"
+  },
+  "apps": []
+}
